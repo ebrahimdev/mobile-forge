@@ -2,7 +2,7 @@
 <html class="h-full bg-black">
   <head>
     <title><%= content_for(:title) || "Mobile Forge" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -21,11 +21,21 @@
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    
+    <style>
+      html, body {
+        overflow: hidden;
+        height: 100vh;
+        height: -webkit-fill-available;
+        position: fixed;
+        width: 100%;
+      }
+    </style>
   </head>
 
   <body class="h-full bg-black text-white antialiased">
-    <main class="h-full">
+    <div class="h-full">
       <%= yield %>
-    </main>
+    </div>
   </body>
 </html>

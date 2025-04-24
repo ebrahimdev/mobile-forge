@@ -1,9 +1,28 @@
-<div class="h-screen flex flex-col" data-controller="resizable">
-  <div class="flex-1 min-h-0" data-resizable-target="top">
+<div class="h-full flex flex-col" data-controller="resizable">
+  <!-- Menu component -->
+  <div class="flex-none h-12 bg-gray-900 flex items-center justify-between px-4 shadow-md">
+    <div class="text-white font-semibold">Mobile Forge</div>
+    <div class="flex items-center">
+      <button class="p-2 rounded-full hover:bg-gray-700 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Demo section -->
+  <div class="flex-1 min-h-0 overflow-hidden" data-resizable-target="top">
     <%= render "components/demo_section" %>
   </div>
-  <%= render "components/resizable_handle" %>
-  <div class="flex-1 min-h-0" data-resizable-target="bottom">
+  
+  <!-- Resizable handle -->
+  <div class="flex-none h-2 bg-gray-800 hover:bg-gray-700 transition-colors cursor-ns-resize flex items-center justify-center" data-resizable-target="handle">
+    <div class="w-8 h-0.5 bg-gray-600"></div>
+  </div>
+  
+  <!-- Chat section -->
+  <div class="flex-1 min-h-0 overflow-hidden" data-resizable-target="bottom">
     <%= render "components/chat_section" %>
   </div>
 </div>

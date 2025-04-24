@@ -1,41 +1,36 @@
-<div class="h-full bg-white overflow-hidden relative" data-controller="tabs">
-  <!-- Fixed header that always stays visible -->
+<div class="h-full bg-white flex flex-col overflow-hidden" data-controller="tabs">
+  <!-- Header -->
   <div class="flex-none p-4 border-b border-gray-200">
     <h2 class="text-xl font-semibold text-gray-800" id="current-tab-title">Tech Doc</h2>
   </div>
 
-  <!-- Content sections -->
-  <div class="h-full flex flex-col" data-tabs-target="content">
-    <div class="flex-1 overflow-hidden">
-      <div class="h-full flex items-center justify-center">
-        <p class="text-gray-500">Tech Doc Content</p>
-      </div>
+  <!-- Content -->
+  <div class="flex-1 overflow-auto" data-tabs-target="content">
+    <div class="p-4">
+      <p class="text-gray-500">Tech Doc Content</p>
     </div>
     <!-- Hidden tab title for reference -->
     <div class="hidden" data-tabs-target="tab">Tech Doc</div>
   </div>
 
-  <div class="h-full flex flex-col hidden" data-tabs-target="content">
-    <div class="flex-1 overflow-hidden">
-      <div class="h-full flex items-center justify-center">
-        <p class="text-gray-500">PRD Content</p>
-      </div>
+  <div class="flex-1 overflow-auto hidden" data-tabs-target="content">
+    <div class="p-4">
+      <p class="text-gray-500">PRD Content</p>
     </div>
     <!-- Hidden tab title for reference -->
     <div class="hidden" data-tabs-target="tab">PRD</div>
   </div>
 
-  <div class="h-full flex flex-col hidden" data-tabs-target="content">
-    <div class="flex-1 overflow-hidden">
-      <div class="h-full flex items-center justify-center">
-        <p class="text-gray-500">Demo Content</p>
-      </div>
+  <div class="flex-1 overflow-auto hidden" data-tabs-target="content">
+    <div class="p-4">
+      <p class="text-gray-500">Demo Content</p>
     </div>
     <!-- Hidden tab title for reference -->
     <div class="hidden" data-tabs-target="tab">Demo</div>
   </div>
 
-  <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+  <!-- Dots -->
+  <div class="flex-none py-2 flex justify-center space-x-2">
     <div class="w-2 h-2 rounded-full bg-gray-800 transition-colors duration-200" data-tabs-target="dot"></div>
     <div class="w-2 h-2 rounded-full bg-gray-400 transition-colors duration-200" data-tabs-target="dot"></div>
     <div class="w-2 h-2 rounded-full bg-gray-400 transition-colors duration-200" data-tabs-target="dot"></div>
