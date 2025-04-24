@@ -46,6 +46,15 @@ export default class extends Controller {
   }
 
   showTab(index) {
+    // Update the fixed header with the current tab title
+    const currentTabTitle = document.getElementById("current-tab-title")
+    const activeTabTitle = this.tabTargets[index].textContent
+
+    if (currentTabTitle) {
+      currentTabTitle.textContent = activeTabTitle
+    }
+
+    // Hide all content sections except the current one
     this.contentTargets.forEach((content, i) => {
       content.classList.toggle("hidden", i !== index)
     })
@@ -55,5 +64,8 @@ export default class extends Controller {
       dot.classList.toggle("bg-gray-400", i !== index)
       dot.classList.toggle("bg-gray-800", i === index)
     })
+
+    // Update the current value to trigger any observers
+    this.currentValue = index
   }
 } 
