@@ -59,10 +59,36 @@ class MessagesController < ApplicationController
   end
   
   def process_with_ai(conversation_messages, assistant_message)
-    # This is a placeholder method after removing all LLM integrations
-    # Will be replaced with a new implementation
+    # Filter out any pending messages and ensure they have content
+    valid_messages = conversation_messages.reject { |m| m.status == 'pending' || m.content.blank? }
     
-    # Create a temporary static response
-    assistant_message.complete("This is a placeholder response. LLM integration will be implemented soon.")
+    # Make sure we have system message for context
+    unless valid_messages.any? { |m| m.role == 'system' }
+      system_message = Message.new(
+        role: 'system',
+        content: 'You are a helpful assistant. Respond concisely and accurately.',
+        status: 'completed',
+        conversation_id: @conversation_id
+      )
+      valid_messages.unshift(system_message)
+    end
+    
+    # In a real application, this should be done in a background job
+    # But for simplicity, we'll do it inline
+    begin
+      service = OpenrouterService.new
+      # You can customize the model to use by changing the second parameter
+      response = service.chat_completion(valid_messages)
+      
+      if response[:success]
+        assistant_message.complete(response[:content])
+      else
+        Rails.logger.error("AI API Error: #{response[:error]}")
+        assistant_message.fail(response[:error])
+      end
+    rescue => e
+      Rails.logger.error("Error processing message: #{e.message}")
+      assistant_message.fail("An error occurred: #{e.message}")
+    end
   end
 end 
